@@ -16,10 +16,14 @@ class Game extends React.Component {
     };
   }
 
-  // TODO: create a componentWillMount() which will set the current time
+  componentWillMount() {
+    this.setCurrentTime()
+  }
 
   setCurrentTime = () => {
-    this.setState({ time: new Date(Date.now())});
+    this.setState({
+      time: new Date(Date.now())
+    });
   }
 
   addPancake = () => {
@@ -29,7 +33,12 @@ class Game extends React.Component {
   }
 
   takeItOff = (id, status) => {
-    const { pancakes, cooked, burnt, raw } = this.state;
+    const {
+      pancakes,
+      cooked,
+      burnt,
+      raw
+    } = this.state;
 
     this.setState({
       pancakes: pancakes.filter(pancake => !(pancake === id)),
@@ -40,7 +49,13 @@ class Game extends React.Component {
   }
 
   render() {
-    const { pancakes, burnt, cooked, raw, time } = this.state;
+    const {
+      pancakes,
+      burnt,
+      cooked,
+      raw,
+      time
+    } = this.state;
     const pans = pancakes.map((pancake, index) => <Pancake key={index} id={pancake} takeItOff={this.takeItOff} />);
 
     return (
@@ -51,8 +66,8 @@ class Game extends React.Component {
           <div className="Game__score --burnt">Burnt: {burnt}</div>
           <div className="Game__score --raw">Raw: {raw}</div>
         </div>
-        <button 
-          onClick={this.addPancake} 
+        <button
+          onClick={this.addPancake}
           className="Game__button"
         >
           New pancake!
